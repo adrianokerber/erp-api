@@ -11,14 +11,16 @@ The system has the goal to solve some business issues as:
 
 ## Roadmap
 The planned features for this system are:
-* Hire colaborators
-    * Set colaborator salary
-* Increase colaborators' salary
-* Fire colaborators
+* Hire collaborators
+    * Set collaborator salary
+* Increase collaborators' salary
+* Fire collaborators
 * Audit of system changes through database (SQL)
 * View cash flow throught specific and global payroll
 
 ## Technical Requirements
+* Add sirilog
+* Add dependency injection
 * Use SQL database
 * Use ORM framework: Dapper or Entity Framework
 * Use SOLID principles
