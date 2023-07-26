@@ -19,10 +19,10 @@ The planned features for this system are:
 * View cash flow throught specific and global payroll
 
 ## Technical Requirements
-* Add sirilog
-* Add dependency injection
-* Use SQL database
-* Use ORM framework: Dapper or Entity Framework
-* Use SOLID principles
-* Use design patterns for clean code
-* Use migrations for SQL
+- [x] Add [Serilog](https://serilog.net/)
+- [ ] Add dependency injection
+- [ ] Use SQL database
+- [ ] Use ORM framework: Dapper or Entity Framework
+- [ ] Use SOLID principles
+- [ ] Use design patterns for clean code
+- [ ] Use migrations for SQL

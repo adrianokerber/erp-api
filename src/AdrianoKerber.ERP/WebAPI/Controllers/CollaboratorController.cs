@@ -17,9 +17,11 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IEnumerable<Collaborator> GetCollaborators()
         {
-            _logger.LogDebug("Collaborators' :GET called!"); // TODO: add sirilog!
+            var collaborators = new List<Collaborator> { new Collaborator("Adriano", "Kerber", "12345678910") };
+
+            _logger.LogDebug(">>>>>>>>>> GET /collaborator returned:\n{@collaborators}", collaborators);
             //throw new NotImplementedException();
-            return new List<Collaborator> { new Collaborator("Adriano", "Kerber", "12345678910") };
+            return collaborators;
         }
     }
 }
