@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Domain.Contracts.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -8,20 +8,31 @@ namespace WebAPI.Controllers
     public class CollaboratorController : ControllerBase
     {
         private readonly ILogger<CollaboratorController> _logger;
+        private readonly ICollaboratorRepository _collaboratorRepository;
 
-        public CollaboratorController(ILogger<CollaboratorController> logger)
+        public CollaboratorController(ILogger<CollaboratorController> logger, ICollaboratorRepository collaboratorRepository)
         {
             _logger = logger;
+            _collaboratorRepository = collaboratorRepository;
         }
 
         [HttpGet]
-        public IEnumerable<Collaborator> GetCollaborators()
+        public async Task<IActionResult> GetCollaborators()
         {
-            var collaborators = new List<Collaborator> { new Collaborator("Adriano", "Kerber", "12345678910") };
+            try
+            {
+                var collaborators = await _collaboratorRepository.GetAll();
 
-            _logger.LogDebug(">>>>>>>>>> GET /collaborator returned:\n{@collaborators}", collaborators);
-            //throw new NotImplementedException();
-            return collaborators;
+                _logger.LogDebug(">>>>>>>>>> GetCollaborators result:\n{@collaborators}", collaborators);
+
+                return Ok(collaborators);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error!");
+
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

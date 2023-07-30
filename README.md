@@ -20,9 +20,11 @@ The planned features for this system are:
 
 ## Technical Requirements
 - [x] Add [Serilog](https://serilog.net/)
-- [ ] Add dependency injection
-- [ ] Use SQL database
-- [ ] Use ORM framework: Dapper or Entity Framework
-- [ ] Use SOLID principles
-- [ ] Use design patterns for clean code
+- [X] Add dependency injection
+- [X] Use SQL database
+    - [] Use MySql database or connect to sqlite3
+    - Start SQL server on local machine to start connecting and running the initial migrations... - ex: https://code-maze.com/using-dapper-with-asp-net-core-web-api/
+- [X] Use ORM framework: Dapper
+- [X] Use SOLID principles
+- [X] Use design patterns for clean code
 - [ ] Use migrations for SQL

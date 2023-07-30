@@ -1,7 +1,4 @@
-﻿using System.Reflection.Metadata;
-using System.Security.Cryptography.X509Certificates;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
     public record Collaborator
     {

@@ -1,4 +1,5 @@
 using Serilog;
+using WebAPI;
 
 try
 {
@@ -19,7 +20,7 @@ try
     builder.Host.UseSerilog();
 
     // Add services to the container.
-    // TODO: call DI method here to group all services and repositories
+    DIConfigurator.Configure(builder.Services);
 
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
