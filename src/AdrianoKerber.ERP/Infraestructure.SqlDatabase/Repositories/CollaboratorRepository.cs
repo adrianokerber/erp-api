@@ -17,7 +17,7 @@ namespace Infraestructure.SqlDatabase.Repositories
 
         public async Task<IEnumerable<Collaborator>> GetAll()
         {
-            var query = "select * from Collaborators";
+            var query = "SELECT * FROM Collaborators";
 
             using (var connection = _context.CreateConnection())
             {
@@ -26,9 +26,15 @@ namespace Infraestructure.SqlDatabase.Repositories
             }
         }
 
-        public Task<Collaborator> GetCollaborator(int id)
+        public async Task<Collaborator> GetCollaborator(int id)
         {
-            throw new NotImplementedException();
+            var query = "SELECT Id, FirstName, LastName, Document FROM Collaborators WHERE Id = @Id";
+
+            using (var connection = _context.CreateConnection())
+            {
+                var collaborator = await connection.QuerySingleOrDefaultAsync<CollaboratorOrm>(query, new { id });
+                return collaborator.ToDomain();
+            }
         }
     }
 }

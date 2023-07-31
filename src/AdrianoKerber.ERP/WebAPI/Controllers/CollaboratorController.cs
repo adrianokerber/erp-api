@@ -34,5 +34,23 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetCollaboratorById(string id)
+        {
+            if (!int.TryParse(id, out int idNumber))
+                return BadRequest(ModelState);
+            try
+            {
+                var collaborator = await _collaboratorRepository.GetCollaborator(idNumber);
+                return Ok(collaborator);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error!");
+
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
