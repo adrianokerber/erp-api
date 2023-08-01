@@ -2,15 +2,25 @@
 {
     public record Collaborator
     {
+        public Guid Id { get; }
         public string FirstName { get; }
         public string LastName { get; }
-        public string Document { get; }
+        public DateOnly? Birthday { get; }
+        public long DocumentNumber { get; }
+        public string DocumentType { get; }
+        public DateOnly HiredAt { get; }
+        public DateOnly? ResignationAt { get; }
 
-        public Collaborator(string firstName, string lastName, string document)
+        public Collaborator(Guid id, string firstName, string lastName, DateOnly? birthday, long documentNumber, string documentType, DateOnly hiredAt, DateOnly? resignationAt)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Document = document;
+            Id = id;
+            FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+            LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+            Birthday = birthday;
+            DocumentNumber = documentNumber;
+            DocumentType = documentType ?? throw new ArgumentNullException(nameof(documentType));
+            HiredAt = hiredAt;
+            ResignationAt = resignationAt;
         }
     }
 }

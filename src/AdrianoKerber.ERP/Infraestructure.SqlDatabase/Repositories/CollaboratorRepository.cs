@@ -2,7 +2,7 @@
 using Domain.Contracts.Repositories;
 using Domain.Entities;
 using Infraestructure.SqlDatabase.Mappers;
-using Infraestructure.SqlDatabase.ORMs;
+using Infraestructure.SqlDatabase.Orms;
 
 namespace Infraestructure.SqlDatabase.Repositories
 {
@@ -26,9 +26,9 @@ namespace Infraestructure.SqlDatabase.Repositories
             }
         }
 
-        public async Task<Collaborator> GetCollaborator(int id)
+        public async Task<Collaborator> GetById(Guid id)
         {
-            var query = "SELECT Id, FirstName, LastName, Document FROM Collaborators WHERE Id = @Id";
+            var query = "SELECT Id, PublicId, FirstName, LastName, Birthday, DocumentNumber, DocumentType, HiredAt, ResignationAt FROM Collaborators WHERE PublicId = @Id";
 
             using (var connection = _context.CreateConnection())
             {

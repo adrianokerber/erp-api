@@ -4,21 +4,22 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebAPI.Controllers;
 using Xunit;
 
-namespace WebAPI.Tests.ControllersTests
+namespace WebAPI.Tests.Controllers
 {
     public class CollaboratorRouteTests
     {
         private readonly IReadOnlyList<Collaborator> _listOfFiveCollaborators = new List<Collaborator> {
-                new Collaborator("FirstOne", "Surname1", "12345678901"),
-                new Collaborator("SecondOne", "Surname2", "22345678902"),
-                new Collaborator("ThirdOne", "Surname3", "32345678903"),
-                new Collaborator("FourthOne", "Surname4", "42345678904"),
-                new Collaborator("FiftOne", "Surname5", "52345678905"),
+                new Collaborator(Guid.Parse("a1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FirstOne", "Surname1", null, 12345678901, "CPF", DateOnly.Parse("2018-12-10"), null),
+                new Collaborator(Guid.Parse("b1a6d54d-5631-ee11-b64e-0862662cf4c1"), "SecondOne", "Surname2", null, 22345678902, "CPF", DateOnly.Parse("2018-12-11"), null),
+                new Collaborator(Guid.Parse("c1a6d54d-5631-ee11-b64e-0862662cf4c1"), "ThirdOne", "Surname3", null, 32345678903, "CPF", DateOnly.Parse("2018-12-12"), null),
+                new Collaborator(Guid.Parse("d1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FourthOne", "Surname4", null, 42345678904, "CPF", DateOnly.Parse("2018-12-13"), null),
+                new Collaborator(Guid.Parse("e1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FifthOne", "Surname5", null, 52345678905, "CPF", DateOnly.Parse("2018-12-14"), null),
             };
 
         #region GET /collaborator
@@ -59,20 +60,22 @@ namespace WebAPI.Tests.ControllersTests
         #region GET /collaborator/{Id}
         [Trait("Collaborator", "Sucess")]
         [Theory]
-        [InlineData("1")]
-        [InlineData("2")]
-        [InlineData("3")]
+        [InlineData("a1a6d54d-5631-ee11-b64e-0862662cf4c1")]
+        [InlineData("b1a6d54d-5631-ee11-b64e-0862662cf4c1")]
+        [InlineData("c1a6d54d-5631-ee11-b64e-0862662cf4c1")]
+        [InlineData("d1a6d54d-5631-ee11-b64e-0862662cf4c1")]
+        [InlineData("e1a6d54d-5631-ee11-b64e-0862662cf4c1")]
         public void When_GetCollaboratorById_IsCalledAndTheCollaboratorExists_TheSpecificCollaboratorShouldReturn(string idParam)
         {
             // Given
             var collaboratorSearchFilter = (Collaborator collaborator)
-                => collaborator.Document[0] == idParam[0]; // TODO: search by externalId once it's added to the database and exposed to domain
+                => collaborator.Id == Guid.Parse(idParam);
 
             var expectedResult = _listOfFiveCollaborators
                 .FirstOrDefault(collaboratorSearchFilter);
             Mock<ILogger<CollaboratorController>> mockLogger = new();
             Mock<ICollaboratorRepository> mockCollaboratorRepository = new();
-            mockCollaboratorRepository.Setup(x => x.GetCollaborator(int.Parse(idParam)))
+            mockCollaboratorRepository.Setup(x => x.GetById(Guid.Parse(idParam)))
                                       .ReturnsAsync(_listOfFiveCollaborators.FirstOrDefault(collaboratorSearchFilter));
             var sut = new CollaboratorController(mockLogger.Object, mockCollaboratorRepository.Object);
 

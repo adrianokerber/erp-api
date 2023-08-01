@@ -1,5 +1,4 @@
---- Database initial setup! WARNING: this commands will erase the existing database configurations
-USE [Dapper];
+USE [TestDB];
 
 DROP TABLE IF EXISTS [dbo].[Collaborators];
 
@@ -16,27 +15,13 @@ CREATE TABLE [dbo].[Collaborators] (
     CONSTRAINT [PK_Collaborators] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
---------------------------------------
--- Inject some data for test purposes
 INSERT [dbo].[Collaborators] ([FirstName], [LastName], [Birthday], [DocumentNumber], [DocumentType], [HiredAt], [ResignationAt])
     VALUES (N'FirstOne', N'Surname1', NULL, 12345678901, N'CPF', '2018-12-10', NULL);
 INSERT [dbo].[Collaborators] ([FirstName], [LastName], [Birthday], [DocumentNumber], [DocumentType], [HiredAt], [ResignationAt])
     VALUES (N'SecondOne', N'Surname2', NULL, 22345678902, N'CPF', '2018-12-10', NULL);
 INSERT [dbo].[Collaborators] ([FirstName], [LastName], [Birthday], [DocumentNumber], [DocumentType], [HiredAt], [ResignationAt])
     VALUES (N'ThirdOne', N'Surname3', NULL, 32345678903, N'CPF', '2018-12-10', NULL);
-
-
-----------------------------------------------------
-----------------------------------------------------
---- Optional:
---- Useful queries
-
--- Describe table
-exec sp_columns Collaborators;
-
--- Insert register
 INSERT [dbo].[Collaborators] ([FirstName], [LastName], [Birthday], [DocumentNumber], [DocumentType], [HiredAt], [ResignationAt])
-    VALUES (N'FirstOne', N'Surname1', NULL, 12345678901, N'CPF', '2018-12-10', NULL);
-
--- Get all collaborators
-select * from Collaborators;
+    VALUES (N'FourthOne', N'Surname4', NULL, 42345678904, N'CPF', '2018-12-10', NULL);
+INSERT [dbo].[Collaborators] ([FirstName], [LastName], [Birthday], [DocumentNumber], [DocumentType], [HiredAt], [ResignationAt])
+    VALUES (N'FifthOne', N'Surname5', NULL, 52345678905, N'CPF', '2018-12-10', NULL);

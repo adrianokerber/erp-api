@@ -26,6 +26,6 @@ The planned features for this system are:
 - [X] Use ORM framework: Dapper
 - [X] Use SOLID principles
 - [X] Use design patterns for clean code
-- [ ] Add externalId for database
+- [X] Add externalId for database
 - [ ] Use migrations for SQL
 - [ ] Add UnitTests

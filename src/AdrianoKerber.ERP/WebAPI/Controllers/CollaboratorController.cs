@@ -17,6 +17,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetCollaborators()
         {
             try
@@ -36,13 +38,17 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{Id}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> GetCollaboratorById(string id)
         {
-            if (!int.TryParse(id, out int idNumber))
+            // TODO: add validator for input parameters
+            if (!Guid.TryParse(id, out var collaboratorId))
                 return BadRequest(ModelState);
             try
             {
-                var collaborator = await _collaboratorRepository.GetCollaborator(idNumber);
+                var collaborator = await _collaboratorRepository.GetById(collaboratorId);
                 return Ok(collaborator);
             }
             catch (Exception ex)
