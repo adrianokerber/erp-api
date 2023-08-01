@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructure.SqlDatabase", "Infraestructure.SqlDatabase\Infraestructure.SqlDatabase.csproj", "{43062EC0-AC90-4008-8BE0-3932AA5397DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Tests", "..\..\tst\WebAPI.Tests\WebAPI.Tests.csproj", "{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{43062EC0-AC90-4008-8BE0-3932AA5397DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43062EC0-AC90-4008-8BE0-3932AA5397DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43062EC0-AC90-4008-8BE0-3932AA5397DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
