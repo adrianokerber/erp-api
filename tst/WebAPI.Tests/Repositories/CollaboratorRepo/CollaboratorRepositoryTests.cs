@@ -5,7 +5,7 @@ using System.Linq;
 using WebAPI.Tests.Repositories.Bases;
 using Xunit;
 
-namespace WebAPI.Tests.Repositories.CollaboratorRepository
+namespace WebAPI.Tests.Repositories.CollaboratorRepo
 {
     public class CollaboratorRepositoryTests : RepositoryTestBase
     {
@@ -14,8 +14,8 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepository
         public void WhenICall_GetAll_AListWith5CollaboratorsShouldBeReturned()
         {
             // Given
-            SetupDBWithThisSql(); // TODO: insert data here via parameter
-            ICollaboratorRepository sut = new CollaboratorRepository(Context);
+            SetupDatabaseWith("./Repositories/CollaboratorRepo/FiveRowsCenario.sql");
+            ICollaboratorRepository sut = new CollaboratorRepository(DbContext);
 
             // When
             var actualResult = sut.GetAll()

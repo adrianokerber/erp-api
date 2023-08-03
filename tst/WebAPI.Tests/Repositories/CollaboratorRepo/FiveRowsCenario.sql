@@ -1,4 +1,4 @@
-USE [TestDB];
+USE [@InjectedDbName];
 
 DROP TABLE IF EXISTS [dbo].[Collaborators];
 
