@@ -31,7 +31,13 @@
     <None Update="Repositories\Bases\SetupBaseForDB.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Repositories\CollaboratorRepo\FiveRowsCenario.sql">
+    <None Update="Repositories\CollaboratorRepositoryTest\Sqls\RemoveTheFiveEntriesOnCollaboratorTable.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Repositories\ConfigureDbSchema.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Repositories\CollaboratorRepositoryTest\Sqls\AddFiveEntriesOnCollaboratorTable.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
