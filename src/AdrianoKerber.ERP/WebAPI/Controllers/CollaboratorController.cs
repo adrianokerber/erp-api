@@ -17,8 +17,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(500)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCollaborators()
         {
             try
@@ -37,10 +37,11 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("{Id}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(500)]
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCollaboratorById(string id)
         {
             // TODO: add validator for input parameters
@@ -49,6 +50,9 @@ namespace WebAPI.Controllers
             try
             {
                 var collaborator = await _collaboratorRepository.GetById(collaboratorId);
+                if (collaborator == null)
+                    return NotFound();
+
                 return Ok(collaborator);
             }
             catch (Exception ex)
