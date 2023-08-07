@@ -42,5 +42,5 @@ List of tasks accomplished that enable us to follow the readmap:
         - DatabaseName not set on IConfiguration for the Repository being tested.
     - Solutions:
         - Only one DB for TestClass and the DBName should be injected on the IConfiguration for the repository
-        ~- Multiple DBs for each test case (More dificult to create and manage). Also the DBName must be injected on the IConfiguration~
+        - ~~Multiple DBs for each test case (More dificult to create and manage). Also the DBName must be injected on the IConfiguration~~
 - [ ] Use migrations for SQL. Ex: [Liquibase](https://www.liquibase.org/).

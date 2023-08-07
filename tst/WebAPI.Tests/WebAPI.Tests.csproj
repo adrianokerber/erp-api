@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Repositories\Bases\SetupBaseForDB.sql">
+    <None Update="Repositories\CollaboratorRepositoryTest\Sqls\AddCollaboratorsByIdEntriesOnCollaboratorTable.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Repositories\CollaboratorRepositoryTest\Sqls\RemoveTheFiveEntriesOnCollaboratorTable.sql">
