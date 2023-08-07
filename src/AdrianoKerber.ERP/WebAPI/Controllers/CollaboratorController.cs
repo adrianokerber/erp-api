@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.ActionFilters;
 
 namespace WebAPI.Controllers
 {
@@ -42,14 +43,12 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetCollaboratorById(string id)
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> GetCollaboratorById(Guid id)
         {
-            // TODO: add validator for input parameters
-            if (!Guid.TryParse(id, out var collaboratorId))
-                return BadRequest(ModelState);
             try
             {
-                var collaborator = await _collaboratorRepository.GetById(collaboratorId);
+                var collaborator = await _collaboratorRepository.GetById(id);
                 if (collaborator == null)
                     return NotFound();
 

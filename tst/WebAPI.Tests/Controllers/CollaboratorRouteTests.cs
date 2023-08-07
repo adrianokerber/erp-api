@@ -7,6 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WebAPI.Controllers;
 using Xunit;
 
@@ -57,7 +58,7 @@ namespace WebAPI.Tests.Controllers
         }
         #endregion
 
-        #region GET /collaborator/{Id}
+        #region GET /collaborator/{id}
         [Trait("Collaborator", "Sucess")]
         [Theory]
         [InlineData("a1a6d54d-5631-ee11-b64e-0862662cf4c1")]
@@ -68,19 +69,20 @@ namespace WebAPI.Tests.Controllers
         public void When_GetCollaboratorById_IsCalledAndTheCollaboratorExists_TheSpecificCollaboratorShouldReturn(string idParam)
         {
             // Given
+            var id = Guid.Parse(idParam);
             var collaboratorSearchFilter = (Collaborator collaborator)
-                => collaborator.Id == Guid.Parse(idParam);
+                => collaborator.Id == id;
 
             var expectedResult = _listOfFiveCollaborators
                 .FirstOrDefault(collaboratorSearchFilter);
             Mock<ILogger<CollaboratorController>> mockLogger = new();
             Mock<ICollaboratorRepository> mockCollaboratorRepository = new();
-            mockCollaboratorRepository.Setup(x => x.GetById(Guid.Parse(idParam)))
+            mockCollaboratorRepository.Setup(x => x.GetById(id))
                                       .ReturnsAsync(_listOfFiveCollaborators.FirstOrDefault(collaboratorSearchFilter));
             var sut = new CollaboratorController(mockLogger.Object, mockCollaboratorRepository.Object);
 
             // When
-            var rawResult = sut.GetCollaboratorById(idParam)
+            var rawResult = sut.GetCollaboratorById(id)
                                .GetAwaiter()
                                .GetResult();
 
@@ -97,6 +99,33 @@ namespace WebAPI.Tests.Controllers
                               .Should()
                               .NotBeNull().And
                               .BeEquivalentTo(expectedResult);
+        }
+
+        [Trait("Collaborator", "Sucess")]
+        [Fact]
+        public void When_GetCollaboratorById_IsCalledAndTheCollaboratorDoNotExists_ShouldRespond_NotFound()
+        {
+            // Given
+            var id = Guid.NewGuid();
+            Mock<ILogger<CollaboratorController>> mockLogger = new();
+            Mock<ICollaboratorRepository> mockCollaboratorRepository = new();
+            mockCollaboratorRepository.Setup(x => x.GetById(It.IsAny<Guid>()))
+                                      .Returns(Task.FromResult<Collaborator?>(null));
+            var sut = new CollaboratorController(mockLogger.Object, mockCollaboratorRepository.Object);
+
+            // When
+            var rawResult = sut.GetCollaboratorById(id)
+                               .GetAwaiter()
+                               .GetResult();
+
+            // Then
+            rawResult.Should()
+                     .NotBeNull();
+            var actualResult = (rawResult as NotFoundResult)!;
+
+
+            actualResult.StatusCode.Should()
+                                   .Be(404);
         }
         #endregion
     }

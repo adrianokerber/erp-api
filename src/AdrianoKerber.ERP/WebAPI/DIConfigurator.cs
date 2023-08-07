@@ -1,6 +1,7 @@
 ﻿using Domain.Contracts.Repositories;
 using Infraestructure.SqlDatabase;
 using Infraestructure.SqlDatabase.Repositories;
+using WebAPI.ActionFilters;
 
 namespace WebAPI
 {
@@ -10,7 +11,13 @@ namespace WebAPI
         {
             services.AddSingleton<DapperContext>();
 
+            InjectServiceFilters(services);
             InjectRepositories(services);
+        }
+
+        private static void InjectServiceFilters(IServiceCollection services)
+        {
+            services.AddScoped<ValidationFilterAttribute>();
         }
 
         private static void InjectRepositories(IServiceCollection services)
