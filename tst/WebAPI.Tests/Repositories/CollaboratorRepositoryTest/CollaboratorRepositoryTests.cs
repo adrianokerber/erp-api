@@ -39,6 +39,24 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest
         }
 
         [Trait("Collaborator", "Sucess")]
+        [Fact]
+        public void WhenICall_GetAll_AndThereAreNoCollaboratorsRegistered_AnEmptyListShouldBeReturned()
+        {
+            // Given
+            ICollaboratorRepository sut = new CollaboratorRepository(DbContext);
+
+            // When
+            var actualResult = sut.GetAll()
+                                  .GetAwaiter()
+                                  .GetResult();
+
+            // Then
+            actualResult.ToList()
+                        .Should()
+                        .BeNullOrEmpty();
+        }
+
+        [Trait("Collaborator", "Sucess")]
         [Theory]
         [InlineData("a1a6d54d-5631-ee11-b64e-0862662cf4c1")]
         [InlineData("b1a6d54d-5631-ee11-b64e-0862662cf4c1")]
@@ -59,8 +77,8 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest
             // Then
             collaboratorFound.Should()
                              .NotBeNull();
-            collaboratorFound.Id.Should()
-                                .Be(id);
+            collaboratorFound!.Id.Should()
+                                 .Be(id);
 
             //ExecuteOnDb("./Repositories/CollaboratorRepositoryTest/Sqls/RemoveTheFiveEntriesOnCollaboratorTable.sql"); // Dump data from test
         }

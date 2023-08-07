@@ -12,7 +12,7 @@ namespace Infraestructure.SqlDatabase
         public DapperContext(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("SqlConnection");
+            _connectionString = _configuration.GetConnectionString("SqlConnection")!;
         }
 
         public IDbConnection CreateConnection()
