@@ -1,8 +1,11 @@
 ﻿using System.Net;
-using WebAPI.Extensions;
+using System.Text.Json;
 
-namespace WebAPI.CustomExceptionMiddleware
+namespace WebAPI.Middlewares
 {
+    /// <summary>
+    /// Middleware used to handle exceptions on the API pipeline
+    /// </summary>
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -32,11 +35,27 @@ namespace WebAPI.CustomExceptionMiddleware
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            return context.Response.WriteAsync(new ErrorDetails
-            {
-                StatusCode = context.Response.StatusCode,
-                Message = "Internal Server Error from the custom middleware."
-            }.ToString());
+            return context.Response.WriteAsync(new ErrorDetails(
+                statusCode: context.Response.StatusCode,
+                message: "Internal Server Error"
+            ).ToString());
+        }
+    }
+
+    public class ErrorDetails
+    {
+        public int StatusCode { get; }
+        public string Message { get; }
+
+        public ErrorDetails(int statusCode, string message)
+        {
+            StatusCode = statusCode;
+            Message = message;
+        }
+
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }
