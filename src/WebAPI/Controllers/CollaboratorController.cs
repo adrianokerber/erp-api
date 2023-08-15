@@ -22,20 +22,11 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetCollaborators()
         {
-            try
-            {
-                var collaborators = await _collaboratorRepository.GetAll();
+            var collaborators = await _collaboratorRepository.GetAll();
 
-                _logger.LogDebug(">>>>>>>>>> GetCollaborators result:\n{@collaborators}", collaborators);
+            _logger.LogDebug(">>>>>>>>>> GetCollaborators result:\n{@collaborators}", collaborators);
 
-                return Ok(collaborators);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Unexpected error!");
-
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(collaborators);
         }
 
         [HttpGet("{id}")]
@@ -46,20 +37,11 @@ namespace WebAPI.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> GetCollaboratorById(Guid id)
         {
-            try
-            {
-                var collaborator = await _collaboratorRepository.GetById(id);
-                if (collaborator == null)
-                    return NotFound();
+            var collaborator = await _collaboratorRepository.GetById(id);
+            if (collaborator == null)
+                return NotFound();
 
-                return Ok(collaborator);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Unexpected error!");
-
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(collaborator);
         }
     }
 }

@@ -1,5 +1,6 @@
 using Serilog;
 using WebAPI;
+using WebAPI.Extensions;
 
 try
 {
@@ -35,6 +36,8 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.ConfigureExceptionHandler();
 
     app.UseHttpsRedirection();
 
