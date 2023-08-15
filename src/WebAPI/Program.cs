@@ -37,7 +37,8 @@ try
         app.UseSwaggerUI();
     }
 
-    app.ConfigureExceptionHandler();
+    //app.ConfigureExceptionHandler();
+    app.ConfigureCustomExceptionMiddleware();
 
     app.UseHttpsRedirection();
 

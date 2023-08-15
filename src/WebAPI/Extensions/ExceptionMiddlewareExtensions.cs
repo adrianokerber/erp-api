@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using System.Text.Json;
+using WebAPI.CustomExceptionMiddleware;
 
 namespace WebAPI.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {
+        // Option 1 for handling expcetions on middleware
         public static void ConfigureExceptionHandler(this IApplicationBuilder app)
         {
             app.UseExceptionHandler(appError =>
@@ -28,6 +30,12 @@ namespace WebAPI.Extensions
                     }
                 });
             });
+        }
+
+        // Option 2 for handling expcetions on middleware
+        public static void ConfigureCustomExceptionMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
         }
     }
 
