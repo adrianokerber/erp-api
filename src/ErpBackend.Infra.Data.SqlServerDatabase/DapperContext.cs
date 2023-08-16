@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 
 namespace Infraestructure.SqlDatabase
 {
+    [Obsolete("Prefer using IDbConnection injection")]
     public class DapperContext
     {
         private readonly IConfiguration _configuration;

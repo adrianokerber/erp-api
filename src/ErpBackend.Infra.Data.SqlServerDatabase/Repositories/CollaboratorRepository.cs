@@ -3,38 +3,33 @@ using Domain.Contracts.Repositories;
 using Domain.Entities;
 using Infraestructure.SqlDatabase.Mappers;
 using Infraestructure.SqlDatabase.Orms;
+using System.Data;
 
 namespace Infraestructure.SqlDatabase.Repositories
 {
     public class CollaboratorRepository : ICollaboratorRepository
     {
-        private readonly DapperContext _context;
+        private readonly IDbConnection _dbConnection;
 
-        public CollaboratorRepository(DapperContext context)
+        public CollaboratorRepository(IDbConnection dbConnection)
         {
-            _context = context;
+            _dbConnection = dbConnection;
         }
 
         public async Task<IEnumerable<Collaborator>> GetAll()
         {
             var query = "SELECT * FROM Collaborators";
 
-            using (var connection = _context.CreateConnection())
-            {
-                var collaborators = await connection.QueryAsync<CollaboratorOrm>(query);
-                return collaborators.ToDomainList();
-            }
+            var collaborators = await _dbConnection.QueryAsync<CollaboratorOrm>(query);
+            return collaborators.ToDomainList();
         }
 
         public async Task<Collaborator?> GetById(Guid id)
         {
             var query = "SELECT Id, PublicId, FirstName, LastName, Birthday, DocumentNumber, DocumentType, HiredAt, ResignationAt FROM Collaborators WHERE PublicId = @Id";
 
-            using (var connection = _context.CreateConnection())
-            {
-                var collaborator = await connection.QuerySingleOrDefaultAsync<CollaboratorOrm>(query, new { id });
-                return collaborator?.ToDomain();
-            }
+            var collaborator = await _dbConnection.QuerySingleOrDefaultAsync<CollaboratorOrm>(query, new { id });
+            return collaborator?.ToDomain();
         }
     }
 }

@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
-    <ProjectReference Include="..\..\src\WebAPI\WebAPI.csproj" />
+    <ProjectReference Include="..\..\src\ErpBackend.Domain\ErpBackend.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ErpBackend.WebAPI\ErpBackend.WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

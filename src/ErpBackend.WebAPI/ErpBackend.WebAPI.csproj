@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infraestructure.SqlDatabase\Infraestructure.SqlDatabase.csproj" />
+    <ProjectReference Include="..\ErpBackend.Domain\ErpBackend.Domain.csproj" />
+    <ProjectReference Include="..\ErpBackend.Infra.CrossCutting\ErpBackend.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\ErpBackend.Infra.Data.SqlServerDatabase\ErpBackend.Infra.Data.SqlServerDatabase.csproj" />
   </ItemGroup>
 
 </Project>

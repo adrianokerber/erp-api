@@ -1,6 +1,7 @@
 using Serilog;
 using WebAPI;
 using WebAPI.Extensions;
+using ErpBackend.Infra.CrossCutting.Extensions;
 
 try
 {
@@ -22,6 +23,7 @@ try
 
     // Add services to the container.
     DIConfigurator.Configure(builder.Services);
+    builder.Services.RegisterSqlServer(builder.Configuration);
 
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
