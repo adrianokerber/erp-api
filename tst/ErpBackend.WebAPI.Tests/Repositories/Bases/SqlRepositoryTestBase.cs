@@ -1,8 +1,9 @@
 ﻿using Dapper;
-using Infraestructure.SqlDatabase;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 
 namespace WebAPI.Tests.Repositories.Bases
@@ -10,8 +11,8 @@ namespace WebAPI.Tests.Repositories.Bases
     public abstract class SqlRepositoryTestBase : IDisposable
     {
         private readonly string _dbName;
-        private readonly DapperContext _dbContext;
-        protected DapperContext DbContext { get { return _dbContext; } }
+        private readonly IDbConnection _dbContext;
+        protected IDbConnection DbContext { get { return _dbContext; } }
 
         // Before
         public SqlRepositoryTestBase()
@@ -19,7 +20,7 @@ namespace WebAPI.Tests.Repositories.Bases
             _dbName = GetRandomDatabaseName();
             CreateTestDatabase(_dbName);
             var configuration = BuildServerConfiguration(_dbName);
-            _dbContext = new DapperContext(configuration);
+            _dbContext = CreateSqlConnectionWith(configuration);
         }
 
         private static string GetRandomDatabaseName()
@@ -36,7 +37,7 @@ namespace WebAPI.Tests.Repositories.Bases
         private void CreateTestDatabase(string dbName)
         {
             var configuration = BuildServerConfiguration();
-            var dbContext = new DapperContext(configuration);
+            var dbContext = CreateSqlConnectionWith(configuration);
             var sqlCreateDbCommand = $"CREATE DATABASE {dbName};";
             ExecuteSql(sqlCreateDbCommand, dbContext);
         }
@@ -54,6 +55,9 @@ namespace WebAPI.Tests.Repositories.Bases
                 SqlConnectionString()
             );
         }
+
+        private IDbConnection CreateSqlConnectionWith(IConfiguration configuration)
+            => new SqlConnection(configuration.GetConnectionString("SqlConnection"));
 
         private static IConfiguration BuildConfigurationWithSqlConnection(string dbServerConnectionString)
         {
@@ -86,12 +90,9 @@ namespace WebAPI.Tests.Repositories.Bases
             ExecuteSql(sql, _dbContext);
         }
 
-        private void ExecuteSql(string sql, DapperContext dbContext)
+        private void ExecuteSql(string sql, IDbConnection connection)
         {
-            using (var connection = dbContext.CreateConnection())
-            {
-                connection.Execute(sql);
-            }
+            connection.Execute(sql);
         }
 
         private void DeleteTestDatabase()

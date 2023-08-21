@@ -28,12 +28,13 @@ List of tasks accomplished that enable us to follow the readmap:
     - [ ] Improve test framework to allow multiple tests to work with same database schema and or data
     - [ ] Cover initial functionalities with tests
 
-## Technical Requirements
+## Technical Goals
 - [x] Add [Serilog](https://serilog.net/)
 - [X] Add dependency injection
 - [X] Use SQL database (SQL Server)
     - Initial tutorial followed https://code-maze.com/using-dapper-with-asp-net-core-web-api/
 - [X] Use ORM framework: Dapper
+- [ ] Use [Dommel](https://github.com/henkmollema/Dommel) with Dapper
 - [X] Use SOLID principles
 - [X] Use design patterns for clean code
 - [X] Add externalId for database

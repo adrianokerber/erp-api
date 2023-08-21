@@ -9,8 +9,6 @@ namespace WebAPI
     {
         public static void Configure(IServiceCollection services)
         {
-            services.AddSingleton<DapperContext>();
-
             InjectServiceFilters(services);
             InjectRepositories(services);
         }
