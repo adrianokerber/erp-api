@@ -25,7 +25,7 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest
             ICollaboratorRepository sut = new CollaboratorRepository(DbContext);
 
             // When
-            var actualResult = sut.GetAll()
+            var actualResult = sut.GetAllAsync()
                                   .GetAwaiter()
                                   .GetResult();
 
@@ -46,7 +46,7 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest
             ICollaboratorRepository sut = new CollaboratorRepository(DbContext);
 
             // When
-            var actualResult = sut.GetAll()
+            var actualResult = sut.GetAllAsync()
                                   .GetAwaiter()
                                   .GetResult();
 
@@ -70,7 +70,7 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest
             ICollaboratorRepository sut = new CollaboratorRepository(DbContext);
 
             // When
-            var collaboratorFound = sut.GetById(id)
+            var collaboratorFound = sut.GetByIdAsync(id)
                                        .GetAwaiter()
                                        .GetResult();
 
@@ -92,7 +92,7 @@ namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest
             ICollaboratorRepository sut = new CollaboratorRepository(DbContext);
 
             // When
-            var collaboratorFound = sut.GetById(unregisteredId)
+            var collaboratorFound = sut.GetByIdAsync(unregisteredId)
                                        .GetAwaiter()
                                        .GetResult();
 

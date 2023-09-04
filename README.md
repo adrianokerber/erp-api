@@ -1,6 +1,7 @@
 # ERP - Enterprise Resource Planning [Back-end]
 A simplified Enterprise Resource Planning (A.K.A.: ERP) system.
 Created as a **RESTful API** on .NET using **ASP.NET** framework, made to solve day-by-day business management.
+We apply the concepts of Clean Architecture and Clean Code as much as possible.
 
 > Warning: Currently this is just a study not a software for production purposes. Feel free to use the system at your own risk. We do not take responsability for any damage caused by this software.
 
@@ -45,6 +46,9 @@ List of tasks accomplished that enable us to follow the readmap:
         - Only one DB for TestClass and the DBName should be injected on the IConfiguration for the repository
         - ~~Multiple DBs for each test case (More dificult to create and manage). Also the DBName must be injected on the IConfiguration~~
 - [X] Add middleware to handle exceptions on API
+- [X] Add Automapper
 - [X] Add Validation via Filters
+- [ ] Add Fluentvalidation
+- [ ] Create Services to decouple presentation from Domain
 - [ ] Split tests in two projects: 1. Unit Tests; 2. Integration Tests;
 - [ ] Use migrations for SQL. Ex: [Liquibase](https://www.liquibase.org/).

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpBackend.WebAPI", "src\Er
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpBackend.Domain", "src\ErpBackend.Domain\ErpBackend.Domain.csproj", "{CBEE8A21-88D4-4E89-BA50-B6FD14D26598}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Solution Items", "0. Solution Items", "{D6D50A0D-A442-452A-926E-4D1A7DF36B22}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D6D50A0D-A442-452A-926E-4D1A7DF36B22}"
 	ProjectSection(SolutionItems) = preProject
 		utl\DatabaseInitializationAndUsefulQueries.sql = utl\DatabaseInitializationAndUsefulQueries.sql
 		LICENSE = LICENSE
@@ -18,15 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpBackend.Infra.Data.SqlSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpBackend.WebAPI.Tests", "tst\ErpBackend.WebAPI.Tests\ErpBackend.WebAPI.Tests.csproj", "{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain", "1. Domain", "{BB37C811-2ED2-43B2-A5E3-413452469731}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Infra", "2. Infra", "{14350019-8F68-4DDB-A791-11514FED64AC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Application", "3. Application", "{B9F76B2A-440F-4B38-BDEE-8BB5BA1978D7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Test", "4. Test", "{3615111C-6C4F-4884-B14A-A5A7343E2D73}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErpBackend.Infra.CrossCutting", "src\ErpBackend.Infra.CrossCutting\ErpBackend.Infra.CrossCutting.csproj", "{706AF7E3-D589-4210-BC62-3D32412ED968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErpBackend.Service", "src\ErpBackend.Service\ErpBackend.Service.csproj", "{1793FB45-7F06-4EF5-9754-3B285A44B122}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,16 +48,13 @@ Global
 		{706AF7E3-D589-4210-BC62-3D32412ED968}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706AF7E3-D589-4210-BC62-3D32412ED968}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706AF7E3-D589-4210-BC62-3D32412ED968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1793FB45-7F06-4EF5-9754-3B285A44B122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1793FB45-7F06-4EF5-9754-3B285A44B122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1793FB45-7F06-4EF5-9754-3B285A44B122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1793FB45-7F06-4EF5-9754-3B285A44B122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{37C641F5-4D16-418E-81CB-2366FFB3463B} = {B9F76B2A-440F-4B38-BDEE-8BB5BA1978D7}
-		{CBEE8A21-88D4-4E89-BA50-B6FD14D26598} = {BB37C811-2ED2-43B2-A5E3-413452469731}
-		{43062EC0-AC90-4008-8BE0-3932AA5397DE} = {14350019-8F68-4DDB-A791-11514FED64AC}
-		{F040D8F3-4565-4D51-BC7F-62CA7DDFAB13} = {3615111C-6C4F-4884-B14A-A5A7343E2D73}
-		{706AF7E3-D589-4210-BC62-3D32412ED968} = {14350019-8F68-4DDB-A791-11514FED64AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C230A606-4F71-499F-870A-99363A1BAD48}

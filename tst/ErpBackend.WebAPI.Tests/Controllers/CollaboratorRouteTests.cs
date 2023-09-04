@@ -15,12 +15,12 @@ namespace WebAPI.Tests.Controllers
 {
     public class CollaboratorRouteTests
     {
-        private readonly IReadOnlyList<Collaborator> _listOfFiveCollaborators = new List<Collaborator> {
-                new Collaborator(Guid.Parse("a1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FirstOne", "Surname1", null, 12345678901, "CPF", DateOnly.Parse("2018-12-10"), null),
-                new Collaborator(Guid.Parse("b1a6d54d-5631-ee11-b64e-0862662cf4c1"), "SecondOne", "Surname2", null, 22345678902, "CPF", DateOnly.Parse("2018-12-11"), null),
-                new Collaborator(Guid.Parse("c1a6d54d-5631-ee11-b64e-0862662cf4c1"), "ThirdOne", "Surname3", null, 32345678903, "CPF", DateOnly.Parse("2018-12-12"), null),
-                new Collaborator(Guid.Parse("d1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FourthOne", "Surname4", null, 42345678904, "CPF", DateOnly.Parse("2018-12-13"), null),
-                new Collaborator(Guid.Parse("e1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FifthOne", "Surname5", null, 52345678905, "CPF", DateOnly.Parse("2018-12-14"), null),
+        private readonly IReadOnlyList<CollaboratorEntity> _listOfFiveCollaborators = new List<CollaboratorEntity> {
+                new CollaboratorEntity(Guid.Parse("a1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FirstOne", "Surname1", null, 12345678901, "CPF", DateOnly.Parse("2018-12-10"), null),
+                new CollaboratorEntity(Guid.Parse("b1a6d54d-5631-ee11-b64e-0862662cf4c1"), "SecondOne", "Surname2", null, 22345678902, "CPF", DateOnly.Parse("2018-12-11"), null),
+                new CollaboratorEntity(Guid.Parse("c1a6d54d-5631-ee11-b64e-0862662cf4c1"), "ThirdOne", "Surname3", null, 32345678903, "CPF", DateOnly.Parse("2018-12-12"), null),
+                new CollaboratorEntity(Guid.Parse("d1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FourthOne", "Surname4", null, 42345678904, "CPF", DateOnly.Parse("2018-12-13"), null),
+                new CollaboratorEntity(Guid.Parse("e1a6d54d-5631-ee11-b64e-0862662cf4c1"), "FifthOne", "Surname5", null, 52345678905, "CPF", DateOnly.Parse("2018-12-14"), null),
             };
 
         #region GET /collaborator
@@ -32,7 +32,7 @@ namespace WebAPI.Tests.Controllers
             var expectedResult = _listOfFiveCollaborators;
             Mock<ILogger<CollaboratorController>> mockLogger = new();
             Mock<ICollaboratorRepository> mockCollaboratorRepository = new();
-            mockCollaboratorRepository.Setup(x => x.GetAll())
+            mockCollaboratorRepository.Setup(x => x.GetAllAsync())
                                       .ReturnsAsync(expectedResult);
             var sut = new CollaboratorController(mockLogger.Object, mockCollaboratorRepository.Object);
 
@@ -50,7 +50,7 @@ namespace WebAPI.Tests.Controllers
 
             actualResult.StatusCode.Should()
                                    .Be(200);
-            actualResult.Value.As<List<Collaborator>>()
+            actualResult.Value.As<List<CollaboratorEntity>>()
                               .Should()
                               .NotBeNull().And
                               .BeEquivalentTo(expectedResult).And
@@ -70,14 +70,14 @@ namespace WebAPI.Tests.Controllers
         {
             // Given
             var id = Guid.Parse(idParam);
-            var collaboratorSearchFilter = (Collaborator collaborator)
+            var collaboratorSearchFilter = (CollaboratorEntity collaborator)
                 => collaborator.Id == id;
 
             var expectedResult = _listOfFiveCollaborators
                 .FirstOrDefault(collaboratorSearchFilter);
             Mock<ILogger<CollaboratorController>> mockLogger = new();
             Mock<ICollaboratorRepository> mockCollaboratorRepository = new();
-            mockCollaboratorRepository.Setup(x => x.GetById(id))
+            mockCollaboratorRepository.Setup(x => x.GetByIdAsync(id))
                                       .ReturnsAsync(_listOfFiveCollaborators.FirstOrDefault(collaboratorSearchFilter));
             var sut = new CollaboratorController(mockLogger.Object, mockCollaboratorRepository.Object);
 
@@ -95,7 +95,7 @@ namespace WebAPI.Tests.Controllers
 
             actualResult.StatusCode.Should()
                                    .Be(200);
-            actualResult.Value.As<Collaborator>()
+            actualResult.Value.As<CollaboratorEntity>()
                               .Should()
                               .NotBeNull().And
                               .BeEquivalentTo(expectedResult);
@@ -109,8 +109,8 @@ namespace WebAPI.Tests.Controllers
             var id = Guid.NewGuid();
             Mock<ILogger<CollaboratorController>> mockLogger = new();
             Mock<ICollaboratorRepository> mockCollaboratorRepository = new();
-            mockCollaboratorRepository.Setup(x => x.GetById(It.IsAny<Guid>()))
-                                      .Returns(Task.FromResult<Collaborator?>(null));
+            mockCollaboratorRepository.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()))
+                                      .Returns(Task.FromResult<CollaboratorEntity?>(null));
             var sut = new CollaboratorController(mockLogger.Object, mockCollaboratorRepository.Object);
 
             // When

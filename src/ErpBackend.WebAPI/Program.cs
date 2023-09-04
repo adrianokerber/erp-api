@@ -1,7 +1,8 @@
-using Serilog;
-using WebAPI;
-using WebAPI.Extensions;
 using ErpBackend.Infra.CrossCutting.Extensions;
+using ErpBackend.WebAPI.Extensions;
+using Otimizador.Infra.CrossCutting;
+using Serilog;
+using WebAPI.Extensions;
 
 try
 {
@@ -18,11 +19,13 @@ try
     Log.Information("Starting web application");
 
     var builder = WebApplication.CreateBuilder(args);
-
+    
     builder.Host.UseSerilog();
 
     // Add services to the container.
-    DIConfigurator.Configure(builder.Services);
+    builder.Services.RegisterServices();
+    builder.Services.RegisterFilters();
+    builder.Services.RegisterMapperProfiles();
     builder.Services.RegisterSqlServer(builder.Configuration);
 
     builder.Services.AddControllers();

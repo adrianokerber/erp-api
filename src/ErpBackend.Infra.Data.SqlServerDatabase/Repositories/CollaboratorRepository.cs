@@ -16,7 +16,7 @@ namespace Infraestructure.SqlDatabase.Repositories
             _dbConnection = dbConnection;
         }
 
-        public async Task<IEnumerable<Collaborator>> GetAll()
+        public async Task<IEnumerable<CollaboratorEntity>> GetAllAsync()
         {
             var query = "SELECT * FROM Collaborators";
 
@@ -24,7 +24,7 @@ namespace Infraestructure.SqlDatabase.Repositories
             return collaborators.ToDomainList();
         }
 
-        public async Task<Collaborator?> GetById(Guid id)
+        public async Task<CollaboratorEntity?> GetByIdAsync(Guid id)
         {
             var query = "SELECT Id, PublicId, FirstName, LastName, Birthday, DocumentNumber, DocumentType, HiredAt, ResignationAt FROM Collaborators WHERE PublicId = @Id";
 

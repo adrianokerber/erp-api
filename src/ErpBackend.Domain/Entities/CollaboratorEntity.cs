@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public record Collaborator
+    public record CollaboratorEntity
     {
         public Guid Id { get; }
         public string FirstName { get; }
@@ -11,7 +11,7 @@
         public DateOnly HiredAt { get; }
         public DateOnly? ResignationAt { get; }
 
-        public Collaborator(Guid id, string firstName, string lastName, DateOnly? birthday, long documentNumber, string documentType, DateOnly hiredAt, DateOnly? resignationAt)
+        public CollaboratorEntity(Guid id, string firstName, string lastName, DateOnly? birthday, long documentNumber, string documentType, DateOnly hiredAt, DateOnly? resignationAt)
         {
             Id = id;
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));

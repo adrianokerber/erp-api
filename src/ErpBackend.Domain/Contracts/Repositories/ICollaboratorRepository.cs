@@ -4,7 +4,7 @@ namespace Domain.Contracts.Repositories
 {
     public interface ICollaboratorRepository
     {
-        Task<IEnumerable<Collaborator>> GetAll();
-        Task<Collaborator?> GetById(Guid id);
+        Task<IEnumerable<CollaboratorEntity>> GetAllAsync();
+        Task<CollaboratorEntity?> GetByIdAsync(Guid id);
     }
 }

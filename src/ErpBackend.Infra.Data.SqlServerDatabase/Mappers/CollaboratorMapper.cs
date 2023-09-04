@@ -5,8 +5,8 @@ namespace Infraestructure.SqlDatabase.Mappers
 {
     public static class CollaboratorMapper
     {
-        public static Collaborator ToDomain(this CollaboratorOrm orm)
-            => new Collaborator(orm.PublicId,
+        public static CollaboratorEntity ToDomain(this CollaboratorOrm orm)
+            => new CollaboratorEntity(orm.PublicId,
                                 orm.FirstName,
                                 orm.LastName,
                                 orm.Birthday,
@@ -15,7 +15,7 @@ namespace Infraestructure.SqlDatabase.Mappers
                                 orm.HiredAt,
                                 orm.ResignationAt);
 
-        public static IEnumerable<Collaborator> ToDomainList(this IEnumerable<CollaboratorOrm> orms)
+        public static IEnumerable<CollaboratorEntity> ToDomainList(this IEnumerable<CollaboratorOrm> orms)
         {
             foreach (var orm in orms)
             {
