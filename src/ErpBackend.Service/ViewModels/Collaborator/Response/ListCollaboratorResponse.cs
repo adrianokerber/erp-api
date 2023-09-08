@@ -1,4 +1,4 @@
-﻿namespace ErpBackend.Service.Views.Collaborator.Response
+﻿namespace ErpBackend.Service.ViewModels.Collaborator.Response
 {
     public class ListCollaboratorResponse
     {

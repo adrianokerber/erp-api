@@ -1,13 +1,13 @@
 ﻿using ErpBackend.Service.Contracts;
 using ErpBackend.Service.ViewModels;
-using ErpBackend.Service.Views.Collaborator.Response;
+using ErpBackend.Service.ViewModels.Collaborator.Response;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.ActionFilters;
 
-namespace WebAPI.Controllers
+namespace ErpBackend.WebAPI.Controllers.v1
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("/v1/[controller]")]
     public class CollaboratorController : ControllerBase
     {
         private readonly ILogger<CollaboratorController> _logger;

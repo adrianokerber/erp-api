@@ -1,5 +1,6 @@
 using Domain.Contracts.Repositories;
 using Domain.Entities;
+using ErpBackend.WebAPI.Controllers.v1;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPI.Controllers;
 using Xunit;
 
 namespace WebAPI.Tests.Controllers

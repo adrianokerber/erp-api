@@ -1,5 +1,5 @@
 ﻿using ErpBackend.Service.ViewModels;
-using ErpBackend.Service.Views.Collaborator.Response;
+using ErpBackend.Service.ViewModels.Collaborator.Response;
 
 namespace ErpBackend.Service.Contracts
 {

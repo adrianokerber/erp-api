@@ -2,7 +2,7 @@
 using Domain.Contracts.Repositories;
 using ErpBackend.Service.Contracts;
 using ErpBackend.Service.ViewModels;
-using ErpBackend.Service.Views.Collaborator.Response;
+using ErpBackend.Service.ViewModels.Collaborator.Response;
 
 namespace ErpBackend.Service.Services
 {
@@ -30,7 +30,7 @@ namespace ErpBackend.Service.Services
         {
             var collaborator = await _collaboratorRepository.GetByIdAsync(id).ConfigureAwait(false);
             if (collaborator == default)
-                return new ViewModel<GetByIdCollaboratorResponse>("Collaborators not found");
+                return new ViewModel<GetByIdCollaboratorResponse>("Collaborator not found");
 
             return new ViewModel<GetByIdCollaboratorResponse>(_mapper.Map<GetByIdCollaboratorResponse>(collaborator));
         }

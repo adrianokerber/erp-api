@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using ErpBackend.Service.Views.Collaborator.Response;
+using ErpBackend.Service.ViewModels.Collaborator.Response;
 
 namespace ErpBackend.Service.MapperProfiles
 {
