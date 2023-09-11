@@ -11,11 +11,13 @@ namespace WebAPI.ActionFilters
             if (param.Value == null)
             {
                 context.Result = new BadRequestObjectResult("Object is null");
+                return;
             }
 
             if (!context.ModelState.IsValid)
             {
                 context.Result = new BadRequestObjectResult(context.ModelState);
+                return;
             }
         }
 

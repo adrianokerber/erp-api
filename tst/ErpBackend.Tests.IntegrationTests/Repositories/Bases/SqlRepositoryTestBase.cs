@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace WebAPI.Tests.Repositories.Bases
+namespace ErpBackend.Tests.IntegrationTests.Repositories.Bases
 {
     public abstract class SqlRepositoryTestBase : IDisposable
     {
@@ -113,7 +113,7 @@ namespace WebAPI.Tests.Repositories.Bases
         {
             var setCurrentDbSqlCommand = $"USE [{_dbName}];";
             var sqlCommandsFromFile = ReadSqlFileAsString(sqlFilePath);
-            
+
             var sqlCommandsBlock = setCurrentDbSqlCommand
                                  + sqlCommandsFromFile;
 

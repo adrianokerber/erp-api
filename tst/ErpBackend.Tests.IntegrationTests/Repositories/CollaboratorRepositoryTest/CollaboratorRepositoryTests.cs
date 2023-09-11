@@ -1,9 +1,9 @@
 ﻿using Domain.Contracts.Repositories;
+using ErpBackend.Tests.IntegrationTests.Repositories.Bases;
 using FluentAssertions;
 using Infraestructure.SqlDatabase.Repositories;
 using System;
 using System.Linq;
-using WebAPI.Tests.Repositories.Bases;
 using Xunit;
 
 namespace WebAPI.Tests.Repositories.CollaboratorRepositoryTest

@@ -49,6 +49,7 @@ List of tasks accomplished that enable us to follow the readmap:
 - [X] Add Automapper
 - [X] Add Validation via Filters
 - [ ] Add Fluentvalidation
-- [ ] Create Services to decouple presentation from Domain
+- [X] Create Services to decouple presentation from Domain
+- [ ] Add UnitOfWork/Transactions for Database keeping the architecture clean
 - [ ] Split tests in two projects: 1. Unit Tests; 2. Integration Tests;
 - [ ] Use migrations for SQL. Ex: [Liquibase](https://www.liquibase.org/).
