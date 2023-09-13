@@ -10,6 +10,34 @@ The system has the goal to solve some business issues as:
 - Payroll management
 - Audit of company actions on the ERP
 
+## 1. Run app as Docker container
+Container docker
+```dockerfile
+# Build
+docker build -t web-api .
+# Run
+docker run -d -p 8080:80 web-api
+```
+## 2. Build your development environment using docker-compose
+
+Initialize all containers
+```bash
+docker-compose up -d
+```
+Initialize and build all containers (Important to rebuild if needed!)
+```bash
+docker-compose up -d --build
+```
+Shutdown all containers
+```bash
+docker-compose down
+```
+> Tip: use `docker-compose` or `docker compose` without dash.
+
+Access the aplication with the browser using `localhost:8080`.
+
+> Tip: run the 'utl/DatabaseInitializationAndUsefulQueries.sql' script on the desired SQL Server since we don't have migrations ative right now.
+
 ## Roadmap
 The planned features for this system are:
 * Hire collaborators
@@ -53,3 +81,8 @@ List of tasks accomplished that enable us to follow the readmap:
 - [ ] Add UnitOfWork/Transactions for Database keeping the architecture clean
 - [ ] Split tests in two projects: 1. Unit Tests; 2. Integration Tests;
 - [ ] Use migrations for SQL. Ex: [Liquibase](https://www.liquibase.org/).
+- [X] Configure docker-compose to build dev environment with SQLServer.
+    - References:
+        - https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver15&pivots=cs1-bash#persist
+        - https://stackoverflow.com/questions/63133630/is-it-possible-to-create-a-volume-with-microsoft-sql-server-docker-container
+        - https://hub.docker.com/_/microsoft-mssql-server

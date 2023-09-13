@@ -14,6 +14,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+	<PackageReference Include="FluentAssertions" Version="6.11.0" />
+	<PackageReference Include="Moq" Version="4.18.4" />
     <PackageReference Include="coverlet.collector" Version="3.1.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -22,6 +24,11 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ErpBackend.Domain\ErpBackend.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ErpBackend.Service\ErpBackend.Service.csproj" />
   </ItemGroup>
 
 </Project>

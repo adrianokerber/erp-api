@@ -1,5 +1,7 @@
 --- Database initial setup! WARNING: this commands will erase the existing database configurations
-USE [Dapper];
+CREATE DATABASE ErpDb;
+
+USE ErpDb;
 
 DROP TABLE IF EXISTS [dbo].[Collaborators];
 
