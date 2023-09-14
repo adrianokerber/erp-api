@@ -26,7 +26,7 @@ First you will need to install one or all options bellow
 - [Visual Studio or VSCode](https://visualstudio.microsoft.com/) IDE, along with the [.NET6](https://dotnet.microsoft.com/en-us/) framework.
 - Containerization: [Docker](https://www.docker.com/) or [Podman](https://podman.io/)
 
-Run the following script on the SQL server `./utl/DatabaseInitializationAndUsefulQueries.sql`. This script will setup the database and the initial data.
+Use the embedded SQL Server of the Visual Studio for local debug or the server on the Docker container (Through docker-compose) and run the following script `./utl/DatabaseInitializationAndUsefulQueries.sql`. This script will setup the database and the initial data.
 
 NOTE: once we enable migrations this step will be replaced.
 
