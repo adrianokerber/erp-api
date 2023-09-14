@@ -396,6 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
-# Ignore docker volumes stored under our folder
-.volumes

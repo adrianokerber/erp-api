@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
     networks:
-      - app-network
+      - api-network
     ports:
       - "8080:80"
     expose:
@@ -17,20 +17,36 @@ services:
   db:
     container_name: db
     image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
     environment:
       SA_PASSWORD: "D3vP@ss!8"
       ACCEPT_EULA: "Y"
     restart: always
     volumes:
-      - ./.volumes/sqlserver/data:/var/opt/mssql/data
-      - ./.volumes/sqlserver/log:/var/opt/mssql/log
-      - ./.volumes/sqlserver/secrets:/var/opt/mssql/secrets
+      - db-data:/var/opt/mssql/data
+      - db-log:/var/opt/mssql/log
+      - db-secrets:/var/opt/mssql/secrets
     networks:
-      - app-network
+      - api-network
     ports:
       - "1433:1433"
 
+volumes:
+
+  db-data:
+    name: db-data
+    driver: local
+
+  db-log:
+    name: db-log
+    driver: local
+
+  db-secrets:
+    name: db-secrets
+    driver: local
+
 networks:
-  app-network:
-    name: app-network
+
+  api-network:
+    name: api-network
     driver: bridge
