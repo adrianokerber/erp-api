@@ -4,8 +4,8 @@ WORKDIR /build
 
 COPY . .
 
-RUN dotnet restore "src/ErpBackend.WebAPI/ErpBackend.WebAPI.csproj" --force --no-cache
-RUN dotnet publish "src/ErpBackend.WebAPI/ErpBackend.WebAPI.csproj" -c Release -o /app
+RUN dotnet restore "src/ErpApi.WebAPI/ErpApi.WebAPI.csproj" --force --no-cache
+RUN dotnet publish "src/ErpApi.WebAPI/ErpApi.WebAPI.csproj" -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS final
 
@@ -17,4 +17,4 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 EXPOSE 80
 EXPOSE 443
-ENTRYPOINT ["dotnet", "ErpBackend.WebAPI.dll"]
+ENTRYPOINT ["dotnet", "ErpApi.WebAPI.dll"]

@@ -1,7 +1,6 @@
-# ERP - Enterprise Resource Planning [Back-end]
-A simplified Enterprise Resource Planning (A.K.A.: ERP) system.
-Created as a **RESTful API** on .NET using **ASP.NET** framework, made to solve day-by-day business management.
-We apply the concepts of Clean Architecture and Clean Code as much as possible.
+# ERP.API - A simplified Enterprise Resource Planning solution
+This project is a study that aims to put together back-end technologies in an applied context that is the Enterprise Resource Planning (A.K.A.: ERP) solution. We are going to apply the concepts of Clean Architecture and Clean Code as much as possible.
+The final expected result is a **RESTful API** on .NET using **ASP.NET** framework, made to solve day-by-day business management.
 
 > Warning: Currently this is just a study not a software for production purposes. Feel free to use the system at your own risk. We do not take responsability for any damage caused by this software.
 
@@ -10,7 +9,34 @@ The system has the goal to solve some business issues as:
 - Payroll management
 - Audit of company actions on the ERP
 
-## 1. Run app as Docker container
+### Technologies applied to the project
+- .NET
+- ASP.NET framework
+- Dapper
+- SQL Server
+- Docker
+
+## 1. Setup and running the API
+We recommend the usage of Docker for running our project. For debbuging prefer installing the .NET directly on your machine and using Visual Studio or VSCode IDEs.
+
+> Note: in order to run the project on Docker you must install Docker first! As for running .NET you must install it on your machine too.
+
+### Setup
+First you will need to install one or all options bellow
+- [Visual Studio or VSCode](https://visualstudio.microsoft.com/) IDE, along with the [.NET6](https://dotnet.microsoft.com/en-us/) framework.
+- Containerization: [Docker](https://www.docker.com/) or [Podman](https://podman.io/)
+
+Run the following script on the SQL server `./utl/DatabaseInitializationAndUsefulQueries.sql`. This script will setup the database and the initial data.
+
+NOTE: once we enable migrations this step will be replaced.
+
+### Run API locally
+Using the Visual Studio IDE or run via CLI using
+```ps
+dotnet run --project src/ErpApi.WebAPI/ErpApi.WebAPI.csproj
+```
+
+### Run API as Docker container
 Container docker
 ```dockerfile
 # Build
@@ -18,7 +44,7 @@ docker build -t web-api .
 # Run
 docker run -d -p 8080:80 web-api
 ```
-## 2. Build your development environment using docker-compose
+### Build your environment via docker-compose
 
 Initialize all containers
 ```bash
@@ -36,9 +62,7 @@ docker-compose down
 
 Access the aplication with the browser using `localhost:8080`.
 
-> Tip: run the 'utl/DatabaseInitializationAndUsefulQueries.sql' script on the desired SQL Server since we don't have migrations ative right now.
-
-## Roadmap
+## 2. Roadmap
 The planned features for this system are:
 * Hire collaborators
     * Set collaborator salary
@@ -86,3 +110,6 @@ List of tasks accomplished that enable us to follow the readmap:
         - https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver15&pivots=cs1-bash#persist
         - https://stackoverflow.com/questions/63133630/is-it-possible-to-create-a-volume-with-microsoft-sql-server-docker-container
         - https://hub.docker.com/_/microsoft-mssql-server
+
+
+#back-end; #dotnet6; #dapper; #docker; #docker-compose; #sqlserver;
