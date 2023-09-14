@@ -1,7 +1,6 @@
-# ERP - Enterprise Resource Planning [Back-end]
-A simplified Enterprise Resource Planning (A.K.A.: ERP) system.
-Created as a **RESTful API** on .NET using **ASP.NET** framework, made to solve day-by-day business management.
-We apply the concepts of Clean Architecture and Clean Code as much as possible.
+# ERP.API - A simplified Enterprise Resource Planning solution
+This project is a study that aims to put together back-end technologies in an applied context that is the Enterprise Resource Planning (A.K.A.: ERP) solution. We are going to apply the concepts of Clean Architecture and Clean Code as much as possible.
+The final expected result is a **RESTful API** on .NET using **ASP.NET** framework, made to solve day-by-day business management.
 
 > Warning: Currently this is just a study not a software for production purposes. Feel free to use the system at your own risk. We do not take responsability for any damage caused by this software.
 
@@ -10,7 +9,19 @@ The system has the goal to solve some business issues as:
 - Payroll management
 - Audit of company actions on the ERP
 
-## 1. Run app as Docker container
+### Technologies applied to the project
+- .NET
+- ASP.NET framework
+- Dapper
+- SQL Server
+- Docker
+
+## 1. Running
+Some instructions about running the project locally.
+
+> Note: in order to run the project on Docker you must install Docker first!
+
+### Run app as Docker container
 Container docker
 ```dockerfile
 # Build
@@ -18,7 +29,7 @@ docker build -t web-api .
 # Run
 docker run -d -p 8080:80 web-api
 ```
-## 2. Build your development environment using docker-compose
+### Build your development environment using docker-compose
 
 Initialize all containers
 ```bash
@@ -38,7 +49,7 @@ Access the aplication with the browser using `localhost:8080`.
 
 > Tip: run the 'utl/DatabaseInitializationAndUsefulQueries.sql' script on the desired SQL Server since we don't have migrations ative right now.
 
-## Roadmap
+## 2. Roadmap
 The planned features for this system are:
 * Hire collaborators
     * Set collaborator salary
@@ -86,3 +97,6 @@ List of tasks accomplished that enable us to follow the readmap:
         - https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver15&pivots=cs1-bash#persist
         - https://stackoverflow.com/questions/63133630/is-it-possible-to-create-a-volume-with-microsoft-sql-server-docker-container
         - https://hub.docker.com/_/microsoft-mssql-server
+
+
+#back-end; #dotnet6; #dapper; #docker; #docker-compose; #sqlserver;
